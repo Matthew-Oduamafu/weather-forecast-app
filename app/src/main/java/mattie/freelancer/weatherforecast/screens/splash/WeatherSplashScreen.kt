@@ -27,6 +27,7 @@ import androidx.navigation.NavController
 import kotlinx.coroutines.delay
 import mattie.freelancer.weatherforecast.R
 import mattie.freelancer.weatherforecast.navigations.WeatherScreens
+import mattie.freelancer.weatherforecast.utils.Constants
 
 @Composable
 fun WeatherSplashScreen(navController: NavController) {
@@ -42,7 +43,7 @@ fun WeatherSplashScreen(navController: NavController) {
                 easing = { OvershootInterpolator(5f).getInterpolation(it) })
         )
         delay(200L)
-        navController.navigate(WeatherScreens.MAIN_SCREEN.name)
+        navController.navigate(WeatherScreens.MAIN_SCREEN.name+"/${Constants.DEFAULT_CITY}")
     }
     )
 

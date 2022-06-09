@@ -19,9 +19,11 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import mattie.freelancer.weatherforecast.data.DataOrException
+import mattie.freelancer.weatherforecast.model.City
 import mattie.freelancer.weatherforecast.model.Weather
 import mattie.freelancer.weatherforecast.model.WeatherItem
 import mattie.freelancer.weatherforecast.navigations.WeatherScreens
+import mattie.freelancer.weatherforecast.utils.Constants
 import mattie.freelancer.weatherforecast.utils.formatDate
 import mattie.freelancer.weatherforecast.utils.formatDecimals
 import mattie.freelancer.weatherforecast.widgets.*
@@ -30,13 +32,18 @@ import mattie.freelancer.weatherforecast.widgets.*
 private const val TAG = "MainScreenFile"
 
 @Composable
-fun MainScreen(navController: NavController, mainViewModel: MainViewModel = hiltViewModel()) {
+fun MainScreen(
+    navController: NavController,
+    mainViewModel: MainViewModel = hiltViewModel(),
+    city: String?
+) {
     Log.d(TAG, "MainScreen: called")
+    Log.d(TAG, "MainScreen: city: $city ")
 
     val weatherData = produceState<DataOrException<Weather, Boolean, Exception>>(
         initialValue = DataOrException(loading = true)
     ) {
-        value = mainViewModel.getWeatherData("accra")
+        value = mainViewModel.getWeatherData(city?:Constants.DEFAULT_CITY)
     }.value
 
     if (weatherData.loading == true) {
