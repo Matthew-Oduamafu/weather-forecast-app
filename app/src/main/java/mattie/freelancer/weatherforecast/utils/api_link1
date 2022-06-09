@@ -1,0 +1,7 @@
+// 5 days weather forecast api key
+api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
+
+api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}cnt={cnt}&appid={API key}
+
+// sunset sunrise api key
+https://api.sunrise-sunset.org/json?lat=51.5085lng=-0.1257&date=2022-05-16
