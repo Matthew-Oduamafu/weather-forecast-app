@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
-import mattie.freelancer.weatherforecast.data.Favorite
+import mattie.freelancer.weatherforecast.model.Favorite
 import mattie.freelancer.weatherforecast.repository.WeatherDbRepository
 import javax.inject.Inject
 
@@ -51,7 +51,5 @@ class FavoriteViewModel @Inject constructor(private val repository: WeatherDbRep
         repository.deleteFavorite(favorite)
     }
 
-    fun getFavById(city: String) = viewModelScope.launch(Dispatchers.IO) {
-        repository.getFavById(city)
-    }
+    fun getFavById(city: String) = viewModelScope.launch { repository.getFavById(city) }
 }

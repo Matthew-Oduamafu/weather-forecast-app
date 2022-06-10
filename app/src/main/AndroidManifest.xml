@@ -10,9 +10,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/w3"
+        android:icon="@drawable/w1_1"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/w3"
+        android:roundIcon="@drawable/w1_1"
         android:supportsRtl="true"
         android:theme="@style/Theme.WeatherForecast"
         tools:targetApi="31">

@@ -1,4 +1,4 @@
-package mattie.freelancer.weatherforecast.data
+package mattie.freelancer.weatherforecast.model
 
 import androidx.annotation.NonNull
 import androidx.room.ColumnInfo

@@ -44,10 +44,7 @@ fun WeatherDetailRow(weather: WeatherItem) {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             val temp = formatDateTime(weather.dt).split(":")
-//            Text(
-//                text = formatDate(weather.dt).split(",")[0]+", ${temp[0]}${temp.last()}",
-//                modifier = Modifier.padding(start = 5.dp)
-//            )
+
             Text(text = buildAnnotatedString {
                 withStyle(SpanStyle()) {
                     append(formatDate(weather.dt).split(",")[0])
@@ -93,7 +90,7 @@ fun WeatherDetailRow(weather: WeatherItem) {
 
 
 @Composable
-fun SunsetSunriseRow(weatherItem: WeatherItem, cityInfo: City) {
+fun SunsetSunriseRow(cityInfo: City) {
     Row(
         modifier = Modifier
             .padding(top = 15.dp, bottom = 6.dp)
@@ -110,7 +107,7 @@ fun SunsetSunriseRow(weatherItem: WeatherItem, cityInfo: City) {
             Text(text = formatDateTime(cityInfo.sunrise), style = MaterialTheme.typography.caption)
         }
 
-        Row() {
+        Row {
             Text(text = formatDateTime(cityInfo.sunset), style = MaterialTheme.typography.caption)
             Icon(
                 painter = painterResource(id = R.drawable.sunset),
@@ -122,7 +119,7 @@ fun SunsetSunriseRow(weatherItem: WeatherItem, cityInfo: City) {
 }
 
 @Composable
-fun HumidityWindPressureRow(weatherItem: WeatherItem) {
+fun HumidityWindPressureRow(weatherItem: WeatherItem, isImperial: Boolean) {
     Row(
         modifier = Modifier
             .padding(12.dp)
@@ -139,7 +136,7 @@ fun HumidityWindPressureRow(weatherItem: WeatherItem) {
             Text(text = " ${weatherItem.main.humidity}%", style = MaterialTheme.typography.caption)
         }
 
-        Row() {
+        Row {
             Icon(
                 painter = painterResource(id = R.drawable.pressure),
                 contentDescription = "pressure icon",
@@ -151,13 +148,16 @@ fun HumidityWindPressureRow(weatherItem: WeatherItem) {
             )
         }
 
-        Row() {
+        Row {
             Icon(
                 painter = painterResource(id = R.drawable.wind),
                 contentDescription = "humidity icon",
                 modifier = Modifier.size(20.dp)
             )
-            Text(text = " ${weatherItem.wind.speed}mph", style = MaterialTheme.typography.caption)
+            Text(
+                text = " ${weatherItem.wind.speed}${if (isImperial) "mph" else "m/s"}",
+                style = MaterialTheme.typography.caption
+            )
         }
     }
 }

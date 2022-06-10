@@ -43,7 +43,10 @@ fun WeatherSplashScreen(navController: NavController) {
                 easing = { OvershootInterpolator(5f).getInterpolation(it) })
         )
         delay(200L)
-        navController.navigate(WeatherScreens.MAIN_SCREEN.name+"/${Constants.DEFAULT_CITY}")
+        navController.also {
+            it.popBackStack()
+            it.navigate(WeatherScreens.MAIN_SCREEN.name + "/${Constants.DEFAULT_CITY}")
+        }
     }
     )
 

@@ -37,7 +37,7 @@ fun WeatherApp() {
             Column(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
-            ){
+            ) {
                 WeatherNavigation()
             }
         }

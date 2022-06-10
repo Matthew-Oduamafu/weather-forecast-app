@@ -2,7 +2,6 @@ package mattie.freelancer.weatherforecast.navigations
 
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -31,27 +30,31 @@ fun WeatherNavigation() {
             val route = WeatherScreens.MAIN_SCREEN.name
             composable(
                 "$route/{city}",
-                arguments = listOf(navArgument(name = "city") { type = NavType.StringType})
+                arguments = listOf(navArgument(name = "city") { type = NavType.StringType })
             ) { navBackStackEntry ->
                 navBackStackEntry.arguments?.getString("city").let {
                     val mainViewModel: MainViewModel = hiltViewModel()
-                    MainScreen(navController, mainViewModel, it /*Where this it is the city to search*/)
+                    MainScreen(
+                        navController,
+                        mainViewModel,
+                        city = it /*Where this it is the city to search*/
+                    )
                 }
             }
 
-            composable(WeatherScreens.SEARCH_SCREEN.name)    {
+            composable(WeatherScreens.SEARCH_SCREEN.name) {
                 SearchScreen(navController)
             }
 
-            composable(WeatherScreens.ABOUT_SCREEN.name)    {
+            composable(WeatherScreens.ABOUT_SCREEN.name) {
                 AboutScreen(navController = navController)
             }
 
-            composable(WeatherScreens.SETTING_SCREEN.name)    {
+            composable(WeatherScreens.SETTING_SCREEN.name) {
                 SettingsScreen(navController = navController)
             }
 
-            composable(WeatherScreens.FAVORITE_SCREEN.name)    {
+            composable(WeatherScreens.FAVORITE_SCREEN.name) {
                 FavoritesScreen(navController = navController)
             }
         }

@@ -2,6 +2,8 @@ package mattie.freelancer.weatherforecast.data
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
+import mattie.freelancer.weatherforecast.model.Favorite
+import mattie.freelancer.weatherforecast.model.Unit
 
 
 @Dao
@@ -42,5 +44,32 @@ interface WeatherDatabaseDao {
     suspend fun deleteAllFavorites()
 
     @Delete
-    suspend fun deleteAFavorite(favorite: Favorite)
+    suspend fun deleteFavorite(favorite: Favorite)
+
+    // Dao for the unit table
+    @Query(
+        """
+        SELECT
+            *
+        FROM
+            settings_tbl
+    """
+    )
+    fun getUnits(): Flow<List<Unit>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertUnit(unit: Unit)
+
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun updateUnit(unit: Unit)
+
+    @Query(
+        """
+        DELETE FROM settings_tbl
+    """
+    )
+    suspend fun deleteAllUnits()
+
+    @Delete
+    suspend fun deleteUnit(unit: Unit)
 }

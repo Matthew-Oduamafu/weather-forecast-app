@@ -16,7 +16,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import mattie.freelancer.weatherforecast.R
-import mattie.freelancer.weatherforecast.utils.Constants
 import mattie.freelancer.weatherforecast.widgets.WeatherAppBar
 
 
@@ -55,7 +54,7 @@ fun AboutScreen(navController: NavHostController) {
                 Text(
                     text = stringResource(id = R.string.api_used),
                     style = MaterialTheme.typography.subtitle1,
-                    fontWeight = FontWeight.Light
+                    fontWeight = FontWeight.Bold
                 )
             }
         }

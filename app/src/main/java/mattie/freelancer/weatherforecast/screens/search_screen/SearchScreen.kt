@@ -49,16 +49,10 @@ fun SearchScreen(navController: NavController) {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                SearchBar(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp)
-                        .align(Alignment.CenterHorizontally),
-                    onSearch = {
-                        Log.d(TAG, "SearchScreen: search query is $it")
-                        navController.navigate(WeatherScreens.MAIN_SCREEN.name+"/$it")
-                    }
-                )
+                SearchBar {
+                    Log.d(TAG, "SearchScreen: search query is $it")
+                    navController.navigate(WeatherScreens.MAIN_SCREEN.name + "/$it")
+                }
             }
         }
     }
@@ -67,7 +61,6 @@ fun SearchScreen(navController: NavController) {
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun SearchBar(
-    modifier: Modifier = Modifier,
     onSearch: (String) -> Unit
 ) {
     val searchQueryState = rememberSaveable { mutableStateOf("") }
