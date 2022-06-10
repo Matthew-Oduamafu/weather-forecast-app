@@ -1,5 +1,6 @@
 package mattie.freelancer.weatherforecast.widgets
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -37,6 +38,7 @@ fun WeatherAppBar(
     onAddActionClicked: () -> Unit = {},
     onButtonClicked: () -> Unit = {}
 ) {
+    Log.d(TAG, "WeatherAppBar: called")
     val showDialog = remember {
         mutableStateOf(false)
     }
@@ -104,7 +106,7 @@ fun ShowSettingDropDownMenu(showDialog: MutableState<Boolean>, navController: Na
                     Color.White
                 )
         ) {
-            items.forEachIndexed { index, text ->
+            items.forEach { text ->
                 DropdownMenuItem(
                     onClick = {
                         expanded = false
@@ -137,9 +139,6 @@ fun ShowSettingDropDownMenu(showDialog: MutableState<Boolean>, navController: Na
                         )
                         Text(
                             text = text,
-//                            modifier = Modifier.clickable {
-//
-//                            },
                             fontWeight = FontWeight.W300
                         )
                     }
