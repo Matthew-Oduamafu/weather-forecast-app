@@ -52,24 +52,24 @@ fun MainScreen(
     if (unitFromDb.isNotEmpty()) {
         unit = unitFromDb[0].unit.split(" ")[0].lowercase()
         isImperial = unit == "imperial"
+    }
 
-        val weatherData = produceState<DataOrException<Weather, Boolean, Exception>>(
-            initialValue = DataOrException(loading = true)
-        ) {
-            value = mainViewModel.getWeatherData(city ?: Constants.DEFAULT_CITY, units = unit)
-        }.value
+    val weatherData = produceState<DataOrException<Weather, Boolean, Exception>>(
+        initialValue = DataOrException(loading = true)
+    ) {
+        value = mainViewModel.getWeatherData(city ?: Constants.DEFAULT_CITY, units = unit)
+    }.value
 
-        if (weatherData.loading == true) {
-            CircularProgressIndicator()
-        } else if (weatherData.data != null && weatherData.data.toString().isNotEmpty()) {
-            MainScaffold(
-                weather = weatherData.data!!,
-                navController = navController,
-                isImperial = isImperial
-            )
-        } else {
-            NoSearchResultScreen(navController = navController)
-        }
+    if (weatherData.loading == true) {
+        CircularProgressIndicator()
+    } else if (weatherData.data != null && weatherData.data.toString().isNotEmpty()) {
+        MainScaffold(
+            weather = weatherData.data!!,
+            navController = navController,
+            isImperial = isImperial
+        )
+    } else {
+        NoSearchResultScreen(navController = navController)
     }
 }
 
